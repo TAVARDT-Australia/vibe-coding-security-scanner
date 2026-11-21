@@ -1,7 +1,5 @@
 # Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT Australia
 
-[![English (Australia) Online Scanner](https://img.shields.io/badge/Online%20Web%20Scanner-Test%20Live%20App-1e00ff.svg?style=for-the-badge)](https://tavardt-australia.github.io/vibe-coding-security-scanner/)
-
 [![Licence MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Vibe Coding Security](https://img.shields.io/badge/Vibe%20Coding-Security%20Hardened-00d26a.svg)](README.md)
 [![Language](https://img.shields.io/badge/Language-English%20(Australia)-green.svg)](README.md)
@@ -9,7 +7,11 @@
 
 Open-source security scanner auditing live applications built with vibe coding tools (Cursor, Lovable, Bolt, v0). Detects leaked frontend API keys, Supabase RLS gaps, exposed sourcemaps, and sensitive files.
 
-Engineered and maintained by the cybersecurity engineering practice at **[TAVARDT Australia](https://ag.tavardt.com/au/cybersecurity/)**.
+## Interactive Web Application
+
+Access the live online tool and evaluate your pipeline architecture in real-time:
+
+- [https://tavardt-australia.github.io/vibe-coding-security-scanner/](https://tavardt-australia.github.io/vibe-coding-security-scanner/)
 
 ---
 
