@@ -1,79 +1,58 @@
-# Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT Australia
+# TAVARDT Vibe Coding Security & AI Architecture Auditor (Australia)
 
-[![Licence MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Vibe Coding Security](https://img.shields.io/badge/Vibe%20Coding-Security%20Hardened-00d26a.svg)](README.md)
-[![Language](https://img.shields.io/badge/Language-English%20(Australia)-green.svg)](README.md)
-[![Engineering](https://img.shields.io/badge/TAVARDT-Cybersecurity-5b3cf5.svg)](https://ag.tavardt.com/au/cybersecurity/)
+Corporate defensive architecture guide, credential leakage mitigation, and deterministic CLI auditing utility for applications built with AI development tools (Vibe Coding).
 
-Open-source security scanner auditing live applications built with vibe coding tools (Cursor, Lovable, Bolt, v0). Detects leaked frontend API keys, Supabase RLS gaps, exposed sourcemaps, and sensitive files.
+## Threat Surface in AI-Generated Applications
 
-## Interactive Web Application
+Accelerated AI-assisted development (Cursor, Lovable, v0, Bolt) introduces three prevalent architectural vulnerabilities:
 
-Access the live online tool and evaluate in real-time:
+1. **Sourcemap Leaks (.js.map):** Production builds that retain sourcemap files enable complete deobfuscation and reverse-engineering of original TypeScript business logic and backend models.
+2. **Exposing AI Model Secrets in Client Bundles:** OpenAI, Anthropic, or Supabase `service_role` tokens prefixed with `NEXT_PUBLIC_` or `VITE_` are burned directly into static client assets downloaded by any browser.
+3. **Absence of Row Level Security (RLS):** Relational databases queried directly via REST/GraphQL endpoints without active RLS policies allow unauthenticated or unauthorized third parties to dump entire tables.
 
-- [https://tavardt-australia.github.io/vibe-coding-security-scanner/](https://tavardt-australia.github.io/vibe-coding-security-scanner/)
+***
 
----
+## Official CLI Audit Tool
 
-## 1. Vibe Coding Security Scanner Overview
-
-Modern AI-accelerated workflows and *vibe coding* empower operators to release full-stack web applications using **Cursor, Lovable.dev, Bolt.new, v0, and Replit**.
-
-Without architectural oversight, client-side bundles frequently expose production credentials, unshielded BaaS endpoints, and proprietary source trees.
-
-This repository provides an automated Python scanner to assess **the public perimeter of any deployed web application**, identifying critical weaknesses deterministically.
-
----
-
-## 2. Audited Vulnerabilities & Risk Vectors
-
-| Risk Vector | How It Happens in Vibe Coding | Technical Impact |
-| :--- | :--- | :--- |
-| **Frontend API Key Leaks** | Private OpenAI (`sk-...`), Stripe, or AWS keys placed in client `.env` files. | Visitors extract tokens via DevTools, draining commercial API budgets. |
-| **Unprotected Supabase RLS** | Databases configured without Row Level Security (RLS) policies. | Anyone can use the public `anon_key` to exfiltrate or delete records via REST. |
-| **Exposed Production Sourcemaps** | Production builds shipping unstripped `.js.map` files. | Complete intellectual property and application source code are exposed. |
-| **Sensitive File Disclosure** | Edge hosting exposing `/.env` or `/.git/HEAD` to public requests. | Direct breach of infrastructure secrets and repository metadata. |
-| **Missing Security Headers** | Absence of CSP, HSTS, and X-Frame-Options headers. | Increased susceptibility to Clickjacking and transport tampering. |
-
----
-
-## 3. Installation & Implementation Guide
-
-### Quick Installation
+To bypass browser sandbox constraints and CORS enforcement, TAVARDT provides an enterprise Python audit utility for direct socket inspection via terminal or CI/CD pipelines:
 
 ```bash
-git clone https://github.com/TAVARDT-Australia/vibe-coding-security-scanner.git
-cd vibe-coding-security-scanner
+# 1. Download official audit utility from repository
+curl -sO https://raw.githubusercontent.com/TAVARDT-Australia/vibe-coding-security-scanner/main/audit_vibe_security.py
+
+# 2. Run direct audit against your target application
+python audit_vibe_security.py https://your-application.com
 ```
 
-### Scan an Application URL
+### Key Inspection Capabilities
 
-```bash
-python scanner.py https://your-app.vercel.app
-```
+* **Sourcemap Audit:** Automated scanning across standardized build directories to detect exposed `.js.map` files.
+* **HTTP Header Inspection:** Rigorous validation of `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` headers.
+* **Compiled Secret Detection:** High-fidelity regex scanning to identify AI provider keys and administrative credentials embedded within production JavaScript bundles.
 
-### Command Options
+***
 
-```bash
-# Output report formatted as JSON
-python scanner.py https://your-app.vercel.app --json
+## Defensive Mitigation Blueprints
 
-# Skip sourcemap validation
-python scanner.py https://your-app.vercel.app --no-sourcemaps
-```
+This repository includes certified production blueprints to harden your application stack:
 
----
+* **Vite (`vite.config.ts`):** Complete deactivation of production sourcemaps and bundle chunk sanitization.
+* **Next.js (`next.config.js`):** `productionBrowserSourceMaps` deactivation and enterprise defensive header enforcement.
+* **Supabase SQL (`supabase-rls.sql`):** Mandatory `ROW LEVEL SECURITY` activation across public schemas and complete revocation of unauthenticated `anon` table permissions.
+* **Cloudflare WAF:** Perimeter rules to instantly block incoming probes targeting `.js.map`, `.env`, and `.git` files.
 
-## 4. Perimeter Hardening & Engineering Support
+***
 
-If your diagnostic revealed exposed credentials, unprotected database tables, or requires dedicated perimeter security:
+## Compliance Frameworks & Enterprise Standards
 
-* **Corporate Portal:** [TAVARDT Australia](https://ag.tavardt.com/au/cybersecurity/)
-* **Technical Contact:** [Contact Engineering Team](https://ag.tavardt.com/au/contact/)
+Defensive architecture and cybersecurity controls aligned with the ASD Essential Eight Maturity Model, Privacy Act 1988, and ACSC guidelines.
 
----
+***
 
-## Licence
+## Official Links & Resources
 
-Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for full details.  
-Copyright (c) 2026 TAVARDT Australia.
+* **Live Hub:** [https://tavardt-australia.github.io/vibe-coding-security-scanner/](https://tavardt-australia.github.io/vibe-coding-security-scanner/)
+* **TAVARDT Portal:** [https://ag.tavardt.com/au/](https://ag.tavardt.com/au/)
+* **Cybersecurity Tools:** [https://tools.tavardt.com/au/](https://tools.tavardt.com/au/)
+
+&copy; 2026 TAVARDT. All rights reserved.
