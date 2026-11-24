@@ -61,3 +61,7 @@ Defensive architecture and cybersecurity controls aligned with the ASD Essential
 * **Tools:** [Central de Ferramentas](https://tools.tavardt.com/au/)
 
 &copy; 2026 TAVARDT. All rights reserved.
+
+***
+
+© 2026 TAVARDT. All rights reserved.
