@@ -77,7 +77,7 @@ def scan_target(target_url, check_sourcemaps=True):
         risk_score += 10
 
     # 2. Extract Script URLs
-    script_matches = re.findall(r'<script[^>]+src=["']([^"']+)["']', html_content, re.IGNORECASE)
+    script_matches = re.findall(r"""<script[^>]+src=["']([^"']+)["']""", html_content, re.IGNORECASE)
     script_urls = []
     for s in script_matches:
         if s.startswith("//"):
@@ -172,8 +172,8 @@ def scan_target(target_url, check_sourcemaps=True):
 def main():
     parser = argparse.ArgumentParser(description="TAVARDT Vibe Coding Security Scanner")
     parser.add_argument("url", help="Target application URL to audit (e.g. https://my-app.vercel.app)")
-    parser.add_argument("--json", action="store_true", help="Output audit report as JSON")
-    parser.add_argument("--no-sourcemaps", action="store_true", help="Skip sourcemap inspection")
+    parser.add_argument("-j", "--json", action="store_true", help="Output audit report as JSON")
+    parser.add_argument("-ns", "--no-sourcemaps", action="store_true", help="Skip sourcemap inspection")
     args = parser.parse_args()
 
     if not args.json:
@@ -189,8 +189,7 @@ def main():
         print(f"[!] Error: {results['error']}")
         sys.exit(1)
 
-    print("
-" + "="*67)
+    print("\n" + "="*67)
     print(f"AUDIT SUMMARY FOR: {results['target']}")
     print(f"OVERALL RISK SCORE: {results['risk_score']}/100 [{results['risk_level']}]")
     print(f"TOTAL FINDINGS: {results['findings_count']}")
@@ -200,17 +199,14 @@ def main():
         print("[+] No critical perimeter vulnerabilities identified on public surface.")
     else:
         for idx, f in enumerate(results["findings"], 1):
-            print(f"
-[{idx}] [{f['severity']}] [{f['category']}] {f['issue']}")
+            print(f"\n[{idx}] [{f['severity']}] [{f['category']}] {f['issue']}")
             if "evidence" in f:
                 print(f"    Evidence: {f['evidence']}")
 
-    print("
-" + "="*67)
+    print("\n" + "="*67)
     print("Need professional perimeter hardening, RLS lock-down, or backend secret isolation?")
     print("Contact TAVARDT Engineering: https://ag.tavardt.com/cybersecurity/")
-    print("="*67 + "
-")
+    print("="*67 + "\n")
 
 if __name__ == "__main__":
     main()
