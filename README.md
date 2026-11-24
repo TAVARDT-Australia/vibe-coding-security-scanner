@@ -54,11 +54,11 @@ Defensive architecture and cybersecurity controls aligned with the ASD Essential
 
 ***
 
-## Official Links & Resources
+## Useful Links
 
-* **Live Hub:** [https://tavardt-australia.github.io/vibe-coding-security-scanner/](https://tavardt-australia.github.io/vibe-coding-security-scanner/)
-* **TAVARDT Portal:** [Institutional Portal](https://ag.tavardt.com/au/)
-* **Tools:** [Tools Hub](https://tools.tavardt.com/au/)
+* **Corporate Portal:** https://ag.tavardt.com/au/
+* **Diagnostic Suite:** https://tools.tavardt.com/au/
+* **Technical Contact:** https://ag.tavardt.com/au/contact/
 
 ***
 
